@@ -9,6 +9,7 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
+        <script src="./node_modules/preline/dist/preline.js"></script>
 
         <!-- Styles -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -22,8 +23,8 @@
             @auth
               <a class="font-medium text-gray-600 hover:text-gray-400 focus:outline-none focus:text-gray-400" href="{{ url('dashboard') }}">Dashboard</a>
             @else
-              <a class="font-medium text-gray-600 hover:text-gray-400 focus:outline-none focus:text-gray-400" href="#">Login</a>
-              <a class="font-medium text-gray-600 hover:text-gray-400 focus:outline-none focus:text-gray-400" href="#">Register</a>
+              <a class="font-medium text-gray-600 hover:text-gray-400 focus:outline-none focus:text-gray-400" href="{{ route('login') }}">Login</a>
+              <a class="font-medium text-gray-600 hover:text-gray-400 focus:outline-none focus:text-gray-400" href="{{ route('register') }}">Register</a>
             @endauth
           </div>
         </nav>

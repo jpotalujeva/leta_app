@@ -7,13 +7,33 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
+use App\Models\Post;
+use App\Models\User;
 
 class ProfileController extends Controller
 {
-    /**
-     * Display the user's profile form.
-     */
+
+   public function index(Request $request)
+    {
+        $id = Auth::id();
+
+        $posts = Post::select(
+              'posts.*',
+               DB::raw('(SELECT COUNT(*) FROM comments WHERE comments.post_id = posts.id) AS comment_count'),
+               DB::raw('(SELECT name FROM users WHERE users.id = posts.user_id) AS post_author')
+            )
+            ->leftJoin('comments', 'comments.post_id', '=', 'posts.id')
+            ->where('posts.user_id', $id)
+            ->orderBy('posts.created_at', 'DESC')
+            ->get();
+
+        return view('profile.index')->with([
+            'posts' => $posts
+        ]);
+    }
+
     public function edit(Request $request): View
     {
         return view('profile.edit', [
