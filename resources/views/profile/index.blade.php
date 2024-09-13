@@ -7,11 +7,11 @@
       <div class="mx-auto max-w-7xl px-6 lg:px-8">
         <div class="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-2">
           @foreach($posts as $item)
-          <article class="flex max-w-xl flex-col items-start justify-between text-wrap ">
-            <div class="flex items-center gap-x-4 text-xs border-solid border-2 border-indigo-600">
+          <article class="flex max-w-xl flex-col items-start justify-between text-wrap bg-gray-50 border-solid border-2 border-gray-600 rounded">
+            <div class="flex items-center gap-x-4 text-xs">
               <time datetime="2020-03-16" class="text-gray-500">{{ $item->created_at }}</time>
               @foreach ($item->categories as $value)
-                <span class="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">{{ $value->name }}</span>
+                <span class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-700 ring-1 ring-inset ring-gray-600/10">{{ $value->name }}</span>
               @endforeach
             </div>
             <div class="group relative">

@@ -161,10 +161,29 @@ class PostController extends Controller
     {
         $category = Category::find($id);
         $posts = $category->post()->get();
+        if ($posts) {
+	        foreach ($posts as $key => &$item) {
+	        	$data = Post::select(
+		            DB::raw('(SELECT COUNT(*) FROM comments WHERE comments.post_id = posts.id) AS comment_count'),
+		            DB::raw('(SELECT name FROM users WHERE users.id = posts.user_id) AS post_author')
+		        )
+		        ->leftJoin('comments', 'comments.post_id', '=', 'posts.id')
+		        ->where('posts.id', $item->id)
+		        ->orderBy('posts.created_at', 'DESC')
+		        ->first();
+		        
+		        $item['comment_count'] = $data->comment_count;
+		        $item['post_author'] = $data->post_author;
+	        }
+
+	        return view('posts.index', [
+	        	'posts' => $posts,
+	        ]);
+        }
 
         return view('posts.index', [
-        	'posts' => $posts,
-        ]);
+	        	'posts' => $posts,
+	        ])->with('status', 'No Posts found for this category');
     }
 
     public function filterPostsByTitle(Request $request)

@@ -14,22 +14,21 @@
     <p class="font-semibold text-gray-900" >Click on badge to filter posts by category</p>
        @foreach($list as $item)
           <a href="{{ route('categoryFilter', $item->id) }}">
-          <span class="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">{{ $item->name }}</span></a>
+          <span class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-700 ring-1 ring-inset ring-gray-600/10">{{ $item->name }}</span></a>
       @endforeach
   </div>
   <section class="py-10">
-    <div class="mx-auto max-w-7xl px-6 lg:px-8">
-      <div class="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-2">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8 ">
+      <div class="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-2">
       	@foreach($posts as $item)
-        <article class="flex max-w-xl flex-col items-start justify-between">
-          <div class="p-4 lg:p-6 transition-all duration-300 rounded-b-2xl group-hover:bg-gray-50">
-            <time datetime="2020-03-16" class="text-gray-500">{{ $item->created_at }}</time>
+        <article class="flex max-w-xl flex-col items-start justify-between border-solid border-2 border-gray-600 rounded bg-gray-50">
+          <div class="relative mt-8 flex items-center gap-x-4">
             @foreach ($item->categories as $value)
                 <a href="{{ route('categoryFilter', $value->id) }}">
-                    <span class="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">{{ $value->name }}
+                    <span class="inline-flex items-center rounded-md bg-cyan-50 px-2 py-1 text-xs font-medium text-gray-700 ring-1 ring-inset ring-cyan-600/10">{{ $value->name }}
                     </span>
                 </a>
-            @endforeach
+              @endforeach
           </div>
           <div class="group relative">
             <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
@@ -55,8 +54,10 @@
                   </p>
             </div>
           </div>
+          <div class="relative mt-8 flex items-center gap-x-4">
+            <time datetime="2020-03-16" class="font-semibold text-gray-900">{{ $item->created_at }}</time>
+          </div>
         </article>
-        <hr class="border-teal-500">
         @endforeach
       </div>
     </div>
