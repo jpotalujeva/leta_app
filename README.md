@@ -29,7 +29,7 @@ and wait for process to finish.
 When containers are build run:
 
 ```php
-docker exec -ti php sh
+docker exec -ti my-laravel-app sh
 ```
 Inside container run:
 
