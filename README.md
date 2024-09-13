@@ -16,8 +16,9 @@ DB_CONNECTION=mysql
 DB_HOST=db
 DB_PORT=3306
 DB_DATABASE=laravel_local
-DB_USERNAME=root
+DB_USERNAME=laravel
 DB_PASSWORD=root
+MYSQL_ROOT_PASSWORD=root
 ```
 After that run
 
