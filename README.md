@@ -4,7 +4,7 @@
 ```bash
 git clone https://github.com/jpotalujeva/leta_app.git
 
-cd ict/
+cd leta_app/
 
 touch .env
 ```
