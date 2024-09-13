@@ -38,5 +38,6 @@ composer install
 
 php artisan migrate
 php artisan db:seed
+php artisan key:generate
 ```
 After these steps follow to http://localhost:8000/ 
